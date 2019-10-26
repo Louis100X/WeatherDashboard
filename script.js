@@ -9,6 +9,7 @@ var searchButton = $("#citySearch");
 searchButton.on("click", function (event) {
     event.preventDefault();
     var cityInput = $("#cityTyped").val();
+    $(".fiveDayDisplay").empty();
     renderCurrentWeather(cityInput);
     $("#cityHistory").append("<button>" + cityInput + "</button> <br>");
 });
@@ -25,6 +26,7 @@ function renderCurrentWeather(cityInput) {
     var currentWeather = $(".currentWeather");
     // variable for third AJAX call
     var fiveDayForecast = $(".fiveDayDisplay");
+    var currentDate = moment().format('MMMM Do YYYY');
 
     // console log my API URL to check that variables have a value assigned
     console.log(openWeatherURL);
@@ -37,7 +39,7 @@ function renderCurrentWeather(cityInput) {
           console.log(response);
         //   currentWeather.append("<p>City Name:" + response.name + "</p>");
         console.log(response.name);
-        $("#cityName").text("City Name: " + response.name);
+        $("#cityName").text("City Name: " + response.name + " " + currentDate);
         currentWeather.text("Weather Description: "+ response.weather[0].description); 
         currentWeather.append("<p>Temperature: " + response.main.temp + "</p>");
         currentWeather.append("<p>Humidity: " + response.main.humidity + "</p>");
@@ -67,20 +69,22 @@ function renderCurrentWeather(cityInput) {
         var fiveDayForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&appid=96572f2661bb3c833bf8894b537b2366&units=imperial";
 
         console.log(fiveDayForecastURL);
-
+        // third AJAX call to retrieve five day forecast
         $.ajax({
             url: fiveDayForecastURL,
             method: "GET"
         }).then(function(responseThree){
             console.log(responseThree);
-
+            // access the array data provided by the third AJAX call
             fiveDayData = responseThree.list
-
+            // for loop to render the information for five days of forecasting
             for (i = 0; i<fiveDayData.length; i += 8) {
             fiveDayForecast.append("<h5>" + responseThree.list[i].dt_txt + "</h5>");
             // fiveDayForecast.append("<p> Humidity: "  + responseThree.list[0].main.humidity) + "</p>";
             fiveDayForecast.append("<p> Temperature: "  + responseThree.list[i].main.temp) + "</p>";
             fiveDayForecast.append("<p> Humidity: "  + responseThree.list[i].main.humidity) + "%</p>";
+
+            fiveDayForecast.attr("class= card");
         }
         })
 

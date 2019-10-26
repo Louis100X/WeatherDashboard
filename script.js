@@ -61,11 +61,16 @@ function renderCurrentWeather(cityInput) {
          });
         
         // additonal variable for third AJAX call
-        var numberOfDays = 5;
-        var fiveDayForecastURL = "api.openweathermap.org/data/2.5/forecast/daily?lat=" + lat+ "&lon=" + lon +"&cnt="+numberOfDays;
+        var fiveDayForecastURL = "http://api.openweathermap.org/data/2.5/forecast?lat="+ lat + "&lon=" + lon;
 
         console.log(fiveDayForecastURL);
 
+        $.ajax({
+            url: fiveDayForecastURL,
+            method: "GET"
+        }).then(function(responseThree){
+            console.log(responseThree);
+        })
 
 
 

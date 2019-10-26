@@ -13,26 +13,33 @@
     </head>
 
     <body>
-        <header>
-            <h1>Weather Dashboard</h1>
-        </header>
-
-
+       
         <div class="container">
+            <div class="row container-fluid">
+                <header>
+                    <h1>Weather Dashboard</h1>
+                </header>
+            </div>
+
             <div class="row">
-                <div class="citySearchBar col-xs-3 col-xl-3">
+                <div class="citySearchBar col-xs-3 col-sm-3">
                     <form >
+                        <h4>Search For A City</h4>
                         <input id="cityTyped" type="text" name="">
                         <button id="citySearch">Search City</button>
                     </form>
-
                 </div>
-                <div class="cityResults col-xs-9 col-xl-9">
-                    <div class="currentWeather row">
-
+                <div class="cityResults col-xs-9 col-sm-9">
+                    <h4>Current Weather</h4>
+                    <div class="currentWeather">
                     </div>
-                    <div class="fiveDay row">
-
+                    <h4>Five Day Forecast</h4>
+                    <div class="fiveDay">
+                        <div class="col-12">
+                            <div class="fiveDayDisplay">
+                                <p>Hello World!</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
